@@ -1,2 +1,4 @@
 .claude/
 .playwright-mcp/
+backend/__pycache__/
+backend/taskflow.db
