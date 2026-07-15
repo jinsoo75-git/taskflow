@@ -1,4 +1,6 @@
 """업무관리 API 서버 (팀 공유 보드 + 로그인)"""
+from contextlib import asynccontextmanager
+
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -8,7 +10,14 @@ from auth import create_session, get_current_user, hash_password, verify_passwor
 from database import get_connection, init_db
 from models import Task, TaskCreate, TaskUpdate, TokenOut, UserCreate, UserOut
 
-app = FastAPI(title="업무관리 API")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_db()
+    yield
+
+
+app = FastAPI(title="업무관리 API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -16,11 +25,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-@app.on_event("startup")
-def on_startup():
-    init_db()
 
 
 TASK_SELECT = """

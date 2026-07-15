@@ -1,8 +1,10 @@
 """SQLite 데이터베이스 연결 및 초기화"""
+import os
 import sqlite3
 from pathlib import Path
 
-DB_PATH = Path(__file__).parent / "taskflow.db"
+# 테스트에서는 TASKFLOW_DB_PATH로 별도 DB 파일을 지정해 격리한다
+DB_PATH = Path(os.environ.get("TASKFLOW_DB_PATH", Path(__file__).parent / "taskflow.db"))
 
 
 def get_connection():

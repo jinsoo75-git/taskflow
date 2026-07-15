@@ -2,3 +2,5 @@
 .playwright-mcp/
 backend/__pycache__/
 backend/taskflow.db
+backend/.pytest_cache/
+backend/tests/__pycache__/
