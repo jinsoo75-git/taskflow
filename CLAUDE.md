@@ -13,3 +13,7 @@
 ## 금지사항
 - jQuery 사용 금지
 - CSS 직접 작성 금지 (Tailwind만 사용)
+
+## Git 워크플로우
+- GitHub 저장소: https://github.com/jinsoo75-git/taskflow.git
+- git 커밋을 수행한 후에는 항상 자동으로 `git push`까지 실행한다.
